@@ -13,7 +13,7 @@ public class EvictionMapTest {
 
         keyLifeTimeMs = 5000;
 
-        EvictionMap<String, String> map = new EvictionMap<>(keyLifeTimeMs);
+        ExpiryMap<String, String> map = new EvictionMap<>(keyLifeTimeMs);
 
         map.put("key1", "value1");
         map.put("key2", "value2");
@@ -28,7 +28,7 @@ public class EvictionMapTest {
 
         keyLifeTimeMs = 10000;
 
-        EvictionMap<String, String> map = new EvictionMap<>(keyLifeTimeMs);
+        ExpiryMap<String, String> map = new EvictionMap<>(keyLifeTimeMs);
 
         map.put("key1", "value1");
         map.put("key2", "value2");
@@ -48,7 +48,7 @@ public class EvictionMapTest {
 
         keyLifeTimeMs = 5000;
 
-        EvictionMap<String, String> map = new EvictionMap<>(keyLifeTimeMs);
+        ExpiryMap<String, String> map = new EvictionMap<>(keyLifeTimeMs);
 
         map.put("key1", "value1");
         map.put("key2", "value2");
@@ -65,7 +65,7 @@ public class EvictionMapTest {
 
         keyLifeTimeMs = 10000;
 
-        EvictionMap<String,String> map = new EvictionMap<>(keyLifeTimeMs);
+        ExpiryMap<String,String> map = new EvictionMap<>(keyLifeTimeMs);
 
         map.put("key1", "value1");
         map.put("key2", "value2");

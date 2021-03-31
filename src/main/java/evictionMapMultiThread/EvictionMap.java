@@ -5,7 +5,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.PriorityBlockingQueue;
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
 
-public class EvictionMap<K,V> {
+public class EvictionMap<K,V> implements ExpiryMap<K,V> {
 
 
     private final Map<K,V> internalMap = new ConcurrentHashMap<>();
@@ -22,6 +22,7 @@ public class EvictionMap<K,V> {
     }
 
 
+    @Override
     public void put (K key, V value) {
 
             records.put(new ExpiryRecord<>(System.nanoTime(), key));
@@ -29,8 +30,6 @@ public class EvictionMap<K,V> {
             synchronized (this){
                 notifyAll();
             }
-
-
     }
 
     private void startTracking() {
@@ -71,14 +70,18 @@ public class EvictionMap<K,V> {
         }
     }
 
+    @Override
+    public V get(K key){
+        return internalMap.get(key);
+    }
+
+
 
     public int size() {
         return internalMap.size();
     }
 
 
-    public V get(K key){
-        return internalMap.get(key);
-    }
+
 
 }

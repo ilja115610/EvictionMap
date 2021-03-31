@@ -6,7 +6,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.PriorityBlockingQueue;
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
 
-public class EvictionMap <K,V> {
+public class EvictionMap <K,V> implements ExpiryMap<K,V> {
 
     private final Map<K, V> internalMap = new ConcurrentHashMap<>();
 
@@ -19,6 +19,7 @@ public class EvictionMap <K,V> {
     }
 
 
+    @Override
     public void put(K key, V value) {
 
         internalMap.put(key, value);
@@ -26,6 +27,7 @@ public class EvictionMap <K,V> {
     }
 
 
+    @Override
     public V get(K key) {
         cleanUp();
         return internalMap.get(key);
